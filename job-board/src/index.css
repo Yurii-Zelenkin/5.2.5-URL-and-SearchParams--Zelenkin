@@ -1,0 +1,40 @@
+.mantine-Select-chevron,
+.mantine-MultiSelect-chevron,
+.mantine-NumberInput-chevron {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+.mantine-Pill-remove svg {
+  width: 14px !important;
+  height: 14px !important;
+}
+
+.mantine-CloseButton-root svg {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+.mantine-ActionIcon-root svg {
+  width: 20px !important;
+  height: 20px !important;
+}
+
+.mantine-Pagination-control svg {
+  width: 18px !important;
+  height: 18px !important;
+}
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", sans-serif;
+  color: #212529;
+}
+
+.mantine-Card-root {
+  transition: box-shadow 0.2s ease;
+}
+
+.mantine-Card-root:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
