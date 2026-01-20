@@ -1,12 +1,14 @@
 import React from "react";
 import { Card, Group, Text, Button, Stack } from "@mantine/core";
-import type { Vacancy } from "../../types/vacancy";
+import type { Vacancy } from "types/vacancy";
+import { useNavigate } from "react-router-dom";
 
 interface VacancyCardProps {
   vacancy: Vacancy;
 }
 
 const VacancyCard: React.FC<VacancyCardProps> = ({ vacancy }) => {
+  const navigate = useNavigate();
   const formatSalary = () => {
     if (!vacancy.salary) return "Зарплата не указана";
 
@@ -15,7 +17,7 @@ const VacancyCard: React.FC<VacancyCardProps> = ({ vacancy }) => {
 
     if (from && to) {
       return `${from.toLocaleString("ru-RU")} – ${to.toLocaleString(
-        "ru-RU"
+        "ru-RU",
       )} ${currencySymbol}`;
     } else if (from) {
       return `от ${from.toLocaleString("ru-RU")} ${currencySymbol}`;
@@ -192,6 +194,7 @@ const VacancyCard: React.FC<VacancyCardProps> = ({ vacancy }) => {
             }}
             onClick={(e) => {
               e.preventDefault();
+              navigate(`/vacancies/${vacancy.id}`);
             }}
           >
             Смотреть вакансию

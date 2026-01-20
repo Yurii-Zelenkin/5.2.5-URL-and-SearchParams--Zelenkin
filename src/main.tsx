@@ -46,5 +46,5 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <App />
       </MantineProvider>
     </Provider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

@@ -1,6 +1,7 @@
 // ИСПРАВЛЕННЫЙ ИМПОРТ
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import type { RootState } from "../store";
 
 interface FiltersState {
   search: string;
@@ -38,6 +39,10 @@ const filtersSlice = createSlice({
       state.skills = state.skills.filter((skill) => skill !== action.payload);
       state.page = 1;
     },
+    setSkills: (state, action: PayloadAction<string[]>) => {
+      state.skills = Array.from(new Set(action.payload));
+      state.page = 1;
+    },
     setPage: (state, action: PayloadAction<number>) => {
       state.page = action.payload;
     },
@@ -53,8 +58,14 @@ export const {
   setCity,
   addSkill,
   removeSkill,
+  setSkills,
   setPage,
   resetSkills,
 } = filtersSlice.actions;
 
 export default filtersSlice.reducer;
+
+export const selectFiltersSearch = (state: RootState) => state.filters.search;
+export const selectFiltersCity = (state: RootState) => state.filters.city;
+export const selectFiltersSkills = (state: RootState) => state.filters.skills;
+export const selectFiltersPage = (state: RootState) => state.filters.page;

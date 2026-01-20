@@ -7,17 +7,21 @@ import {
   Text,
   Paper,
   ActionIcon,
-  Box,
   Stack,
 } from "@mantine/core";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
-import { setCity, addSkill, removeSkill } from "../store/slices/filtersSlice";
+import {
+  setCity,
+  addSkill,
+  removeSkill,
+  setPage,
+} from "../store/slices/filtersSlice";
 import { IconPlus, IconMapPin, IconX } from "@tabler/icons-react";
 
 const cityOptions = [
   { value: "", label: "Все города" },
-  { value: "moscow", label: "Москва" },
-  { value: "spb", label: "Санкт-Петербург" },
+  { value: "1", label: "Москва" },
+  { value: "2", label: "Санкт-Петербург" },
 ];
 
 const Filters: React.FC = () => {
@@ -26,10 +30,17 @@ const Filters: React.FC = () => {
   const [newSkill, setNewSkill] = useState("");
 
   const handleAddSkill = () => {
-    if (newSkill.trim() && !skills.includes(newSkill.trim())) {
-      dispatch(addSkill(newSkill.trim()));
+    const trimmedSkill = newSkill.trim();
+    if (trimmedSkill && !skills.includes(trimmedSkill)) {
+      dispatch(addSkill(trimmedSkill));
+      dispatch(setPage(1));
       setNewSkill("");
     }
+  };
+
+  const handleCityChange = (value: string | null) => {
+    dispatch(setCity(value || ""));
+    dispatch(setPage(1));
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -40,6 +51,11 @@ const Filters: React.FC = () => {
 
   const handleClearSearch = () => {
     setNewSkill("");
+  };
+
+  const handleRemoveSkill = (skill: string) => {
+    dispatch(removeSkill(skill));
+    dispatch(setPage(1));
   };
 
   return (
@@ -106,7 +122,7 @@ const Filters: React.FC = () => {
                 height: "30px",
                 width: "34px",
                 borderRadius: "8px",
-                backgroundColor: " #228BE6",
+                backgroundColor: "#228BE6",
               }}
             >
               <IconPlus size={20} stroke={2.5} />
@@ -120,13 +136,13 @@ const Filters: React.FC = () => {
                   key={skill}
                   size="md"
                   withRemoveButton
-                  onRemove={() => dispatch(removeSkill(skill))}
+                  onRemove={() => handleRemoveSkill(skill)}
                   styles={{
                     root: {
                       fontSize: "14px",
                       padding: "2px 10px",
                       height: "auto",
-                      backgroundColor: " #F6F6F7",
+                      backgroundColor: "#F6F6F7",
                       border: "1px solid #dee2e6",
                       borderRadius: "20px",
                       fontFamily: "'Open Sans', sans-serif",
@@ -162,7 +178,7 @@ const Filters: React.FC = () => {
         <Select
           data={cityOptions}
           value={city}
-          onChange={(value) => dispatch(setCity(value || ""))}
+          onChange={handleCityChange}
           placeholder="Все города"
           clearable
           size="md"

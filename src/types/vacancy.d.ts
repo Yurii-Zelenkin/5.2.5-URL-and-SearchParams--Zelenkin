@@ -50,6 +50,11 @@ export interface Vacancy {
   apply_alternate_url: string;
 }
 
+export interface VacancyDetails extends Vacancy {
+  description?: string;
+  url?: string;
+}
+
 export interface VacanciesResponse {
   items: Vacancy[];
   found: number;
@@ -69,3 +74,4 @@ export interface CityOption {
   value: string;
   label: string;
 }
+
