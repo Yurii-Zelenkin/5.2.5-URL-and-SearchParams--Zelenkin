@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Redirecting...</title>
+    <script>
+      const repoName = "5.2.5-URL-and-SearchParams--Zelenkin";
+      const path = window.location.pathname;
+
+      if (!path.includes(repoName)) {
+        window.location.href = `/${repoName}/`;
+      } else if (!path.endsWith(".html") && !path.includes(".")) {
+        const newPath = path.replace(new RegExp(`^/${repoName}`), "");
+        window.location.href = `/${repoName}/index.html#${newPath}`;
+      }
+    </script>
+  </head>
+  <body>
+    <p>Redirecting to application...</p>
+  </body>
+</html>
