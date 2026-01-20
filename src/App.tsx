@@ -6,7 +6,7 @@ import VacancyDetailsPage from "./pages/VacancyDetailsPage";
 
 const App: React.FC = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/5.2.5-URL-and-SearchParams--Zelenkin/">
       <div style={{ minHeight: "100vh", backgroundColor: "#F6F6F7" }}>
         <Header />
         <Routes>

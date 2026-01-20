@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
+  base: "/5.2.5-URL-and-SearchParams--Zelenkin/",
   test: {
     globals: true,
     environment: "jsdom",
