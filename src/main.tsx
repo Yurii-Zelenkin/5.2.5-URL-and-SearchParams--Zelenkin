@@ -1,3 +1,9 @@
+const redirectPath = sessionStorage.getItem("redirectPath");
+if (redirectPath) {
+  sessionStorage.removeItem("redirectPath");
+  window.history.replaceState(null, "", redirectPath);
+}
+
 import "@mantine/core/styles.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
