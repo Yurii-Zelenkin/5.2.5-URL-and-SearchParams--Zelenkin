@@ -4,17 +4,14 @@
     <meta charset="utf-8" />
     <title>Redirecting...</title>
     <script>
-      const repoName = "5.2.5-URL-and-SearchParams--Zelenkin";
-      const path = window.location.pathname;
-      const search = window.location.search;
-      const hash = window.location.hash;
+      const fullPath =
+        window.location.pathname +
+        window.location.search +
+        window.location.hash;
 
-      if (!path.includes(repoName)) {
-        window.location.href = `/${repoName}${path}${search}${hash}`;
-      } else if (!path.endsWith(".html") && !path.includes(".")) {
-        sessionStorage.setItem("redirectPath", path + search + hash);
-        window.location.href = `/${repoName}/`;
-      }
+      sessionStorage.setItem("redirectPath", fullPath);
+
+      window.location.href = "/5.2.5-URL-and-SearchParams--Zelenkin/";
     </script>
   </head>
   <body>
