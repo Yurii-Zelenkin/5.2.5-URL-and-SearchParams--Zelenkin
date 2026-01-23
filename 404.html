@@ -1,21 +1,25 @@
 <!doctype html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <title>Redirecting...</title>
+    <meta charset="utf-8" />
+    <title>Job Board</title>
     <script>
       const repoName = "5.2.5-URL-and-SearchParams--Zelenkin";
       const path = window.location.pathname;
+      const search = window.location.search;
+      const hash = window.location.hash;
 
       if (!path.includes(repoName)) {
-        window.location.href = `/${repoName}/`;
+        window.location.href = `/${repoName}${path}${search}${hash}`;
       } else if (!path.endsWith(".html") && !path.includes(".")) {
-        const newPath = path.replace(new RegExp(`^/${repoName}`), "");
-        window.location.href = `/${repoName}/index.html#${newPath}`;
+        sessionStorage.setItem("redirectPath", path + search + hash);
+
+        window.location.href = `/${repoName}/`;
       }
     </script>
   </head>
   <body>
-    <p>Redirecting to application...</p>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
